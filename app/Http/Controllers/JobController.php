@@ -15,13 +15,19 @@ class JobController extends Controller
         // $this->middleware('auth');
         // $this->middleware('log')->only('index');
         // $this->middleware('subscribed')->except('store');
+        // dd(Auth::user());
+        // if(Auth::user()->id == 2) {
+        //     dd("lamaran");
+        // }
     }
 
     public function index()
     {
         // dd(Auth::user()->id);
         $data = Job::where('id_user', '=', Auth::user()->id)->get();
-        return view('dashboard.page.job.job', ['data' => $data]);
+        return response()->view('dashboard.page.job.job', ['data' => $data])->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        ->header('Pragma', 'no-cache')
+        ->header('Expires', '0');
     }
 
     public function create()

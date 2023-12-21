@@ -49,12 +49,14 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ Route('job') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Job</span></a>
-            </li>
+            {{-- @if(Auth::user()->hak_akses == 1) --}}
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ Route('job') }}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Job</span></a>
+                </li>
+            {{-- @endif --}}
 
             {{-- @if(Auth::user()->role == 1) --}}
 

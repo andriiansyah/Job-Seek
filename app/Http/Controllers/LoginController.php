@@ -9,7 +9,13 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('login.login');
+        // dd(Auth::user());
+        // if(Auth::user() !== null) {
+        //     return redirect()->route('job');
+        // }
+        return response()->view('login.login')->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        ->header('Pragma', 'no-cache')
+        ->header('Expires', '0');
     }
 
     public function store(Request $request)
@@ -20,7 +26,7 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($data)) {
-            return redirect('/job')->with('success', 'Selamat anda berhasil Login!');
+            return redirect()->route('job')->with('success', 'Selamat anda berhasil Login!');
         }
 
         // $user = User::whereEmail($request->email)->first();
